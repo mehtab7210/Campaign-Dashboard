@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 6%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 175 80% 45%;
+    --primary-foreground: 220 20% 6%;
+
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 15% 16%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 175 60% 35%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 145 60% 45%;
+    --success-foreground: 220 20% 6%;
+
+    --warning: 35 90% 55%;
+    --warning-foreground: 220 20% 6%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 175 80% 45%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 175 80% 45%;
+    --chart-2: 200 70% 50%;
+    --chart-3: 145 60% 45%;
+    --chart-4: 35 90% 55%;
+    --chart-5: 280 60% 55%;
+
+    --sidebar-background: 220 18% 8%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 175 80% 45%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 16%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 175 80% 45%;
+
+    /* Custom tokens */
+    --metric-bg: 220 18% 12%;
+    --metric-border: 220 15% 20%;
+    --table-header: 220 18% 14%;
+    --table-row-hover: 220 15% 14%;
+    --status-active: 145 60% 45%;
+    --status-paused: 35 90% 55%;
+    --status-completed: 215 15% 55%;
+  }
+
+  .dark {
+    /* Already dark by default */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .metric-card {
+    @apply bg-[hsl(var(--metric-bg))] border border-[hsl(var(--metric-border))] rounded-lg p-4 transition-all duration-200;
+  }
+
+  .metric-card:hover {
+    @apply border-primary/30;
+  }
+
+  .metric-value {
+    @apply text-2xl font-semibold tracking-tight text-foreground font-mono;
+  }
+
+  .metric-label {
+    @apply text-xs uppercase tracking-wider text-muted-foreground font-medium;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-active {
+    @apply bg-[hsl(var(--status-active))]/15 text-[hsl(var(--status-active))];
+  }
+
+  .status-paused {
+    @apply bg-[hsl(var(--status-paused))]/15 text-[hsl(var(--status-paused))];
+  }
+
+  .status-completed {
+    @apply bg-[hsl(var(--status-completed))]/15 text-[hsl(var(--status-completed))];
+  }
+
+  .platform-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-secondary text-secondary-foreground;
+  }
+
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply text-left py-3 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium bg-[hsl(var(--table-header))];
+  }
+
+  .data-table td {
+    @apply py-3 px-4 border-b border-border;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-[hsl(var(--table-row-hover))];
+  }
+
+  .live-indicator {
+    @apply relative flex h-2 w-2;
+  }
+
+  .live-indicator::before {
+    @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75 content-[''];
+  }
+
+  .live-indicator::after {
+    @apply relative inline-flex h-2 w-2 rounded-full bg-primary content-[''];
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-[hsl(200,70%,50%)] bg-clip-text text-transparent;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+}
